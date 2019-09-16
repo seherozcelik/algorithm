@@ -1,0 +1,30 @@
+class Solution {
+    public int[] solution(int N, int[] A) {
+        int[] sol = new int[N];
+        int maxNum = 0;
+        int setMaxNum = 0;
+        int Npl1 = N + 1;
+        for(int i = 0; i<A.length; i++){
+            if(A[i] == Npl1){
+                maxNum = setMaxNum;
+            } else{
+              if(sol[A[i]-1] < maxNum){
+                    sol[A[i]-1] = maxNum + 1;
+                } else {
+                    sol[A[i]-1] +=1;   
+                }
+                if(sol[A[i]-1] > setMaxNum){
+                    setMaxNum = sol[A[i]-1];
+                }
+            }
+        }
+        
+        for(int i = 0; i<N; i++){
+            if(sol[i] < maxNum){
+                sol[i] = maxNum;   
+            }
+        }
+        
+        return sol;
+    }
+}
