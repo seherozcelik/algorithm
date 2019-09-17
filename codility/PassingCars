@@ -1,0 +1,17 @@
+class Solution {
+    public int solution(int[] A) {
+        int sum = 0;
+        int j = 0;
+        for (int i = 0; i < A.length; i++){
+            if(A[i]==1){
+                sum = sum+j;
+                if(sum>1000000000){
+                    return -1;
+                }
+            }else{
+                j++;
+            }
+        }
+        return sum;
+    }
+}
