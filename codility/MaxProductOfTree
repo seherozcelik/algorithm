@@ -1,0 +1,14 @@
+import java.util.*;
+
+class Solution {
+    public int solution(int[] A) {
+        Arrays.sort(A);
+        int prod1 = A[A.length -1]*A[A.length -2]*A[A.length -3];
+        int prod2 = A[0]*A[1]*A[A.length -1];
+        if(prod1>prod2){
+            return prod1;
+        }else{
+            return prod2;
+        }
+    }
+}
