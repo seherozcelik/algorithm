@@ -1,0 +1,28 @@
+class Solution {
+    public int[] solution(String S, int[] P, int[] Q) {
+        int[] sol = new int[P.length];
+        String[] tempArry = S.split("");
+        for(int i =0; i<P.length; i++){
+            sol[i] = 4;
+            int k = 0;
+            int half = (Q[i] + P[i])/2;
+            int countEnd = P[i] + (Q[i] - P[i])/4;
+            for(int j=P[i]; j <= countEnd; j++){
+                if(tempArry[j].equals("A") || tempArry[Q[i]-k].equals("A") || tempArry[half-k].equals("A") || tempArry[half+k].equals("A")){
+                    sol[i] = 1;
+                    break;
+                } else if(tempArry[j].equals("C") || tempArry[Q[i]-k].equals("C") || tempArry[half-k].equals("C") || tempArry[half+k].equals("C")){
+                    if(sol[i] > 2){
+                        sol[i] = 2;
+                    }   
+                } else if(tempArry[j].equals("G") || tempArry[Q[i]-k].equals("G") || tempArry[half-k].equals("G") || tempArry[half+k].equals("G")){
+                    if(sol[i] > 3){
+                        sol[i] = 3;
+                    } 
+                }
+                k++;
+            }
+        }
+        return sol;
+    }
+}
