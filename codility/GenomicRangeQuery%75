@@ -2,7 +2,19 @@ class Solution {
     public int[] solution(String S, int[] P, int[] Q) {
         int[] sol = new int[P.length];
         String[] tempArry = S.split("");
+        HashSet<Integer> Aset = new HashSet<Integer>();
         for(int i =0; i<P.length; i++){
+            boolean found = false;
+            for (Integer ind : Aset) {
+			    if(ind>=P[i] && ind<=Q[i]){
+			        sol[i] = 1;
+			        found = true;
+			        break;
+			    }
+		    }
+		    if(found){
+		        continue;
+		    }
             sol[i] = 4;
             int k = 0;
             int half = (Q[i] + P[i])/2;
@@ -10,6 +22,18 @@ class Solution {
             for(int j=P[i]; j <= countEnd; j++){
                 if(tempArry[j].equals("A") || tempArry[Q[i]-k].equals("A") || tempArry[half-k].equals("A") || tempArry[half+k].equals("A")){
                     sol[i] = 1;
+                    if(tempArry[j].equals("A")){
+                        Aset.add(j);
+                    }
+                    if(tempArry[Q[i]-k].equals("A")){
+                        Aset.add(Q[i]-k);
+                    }
+                    if(tempArry[half-k].equals("A")){
+                        Aset.add(half-k);
+                    }
+                    if(tempArry[half+k].equals("A")){
+                        Aset.add(half+k);
+                    }
                     break;
                 } else if(tempArry[j].equals("C") || tempArry[Q[i]-k].equals("C") || tempArry[half-k].equals("C") || tempArry[half+k].equals("C")){
                     if(sol[i] > 2){
