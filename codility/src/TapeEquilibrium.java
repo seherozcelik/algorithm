@@ -5,6 +5,7 @@ public class TapeEquilibrium {
         System.out.println(te.solution(A));
     }
 
+class Solution {
     public int solution(int[] A) {
         if (A.length == 2)
             return Math.abs(A[0] - A[1]);
@@ -12,11 +13,11 @@ public class TapeEquilibrium {
         for (int i : A) {
             sum += i;
         }
-        sum = sum - A[A.length - 1] - A[A.length - 2];
-        long ySum = A[A.length - 1] + A[A.length - 2];
+        sum = sum - A[A.length - 1];
+        long ySum = A[A.length - 1];
         long diff = Math.abs(sum - ySum);
         long minDiff = diff;
-        for (int i = A.length - 3; i > 0; i--) {
+        for (int i = A.length - 2; i > 0; i--) {
             sum = sum - A[i];
             ySum += A[i];
             diff = Math.abs(sum - ySum);
@@ -26,4 +27,5 @@ public class TapeEquilibrium {
         }
         return (int) minDiff;
     }
+}
 }
